@@ -84,7 +84,7 @@ def get_translated_text(key, lang_code):
     return translations.get(key, {}).get(lang_code, key)
 
 # Configure Gemini API
-genai.configure(api_key="AIzaSyCiLe39aQuAqaUtksc3G2Zzmol-sVfXgEM")
+genai.configure(api_key="put-your-api-here")
 
 # Language selector
 st.sidebar.title("🌐 Language / भाषा / ભાષા")
