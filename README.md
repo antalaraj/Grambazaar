@@ -117,8 +117,10 @@ Core components:
 
 ---
 
-## Author
-
+## 👨‍💻 Author
 Raj Antala  
-AI & Data Science Student  
-Adani Institute of Digital Technology Management  
+🎓 PGDM Student in AI and Data Science  
+🏫 Adani Institute of Digital Technology Management (AIDTM)  
+📍 Gandhinagar, India  
+📧 antalaraj214@gmail.com  
+🔗 www.linkedin.com/in/antalaraj
