@@ -1,0 +1,185 @@
+{# Google Translate widget: client-side auto-translation for quick testing. Not SEO-friendly. Use Django i18n for production translations. #}
+<style>
+  /* Hide Google Translate default dropdown and banner, keep our custom buttons */
+  #google_translate_element { display: none !important; }
+  .goog-te-banner-frame { display: none !important; }
+  .goog-te-banner-frame.skiptranslate { display: none !important; }
+  .skiptranslate { display: none !important; }
+  
+  /* Fix body positioning - prevent Google Translate from pushing content down */
+  body { 
+    top: 0 !important; 
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    position: static !important;
+  }
+  
+  /* Fix body positioning when translated */
+  body.translated-ltr,
+  body.translated-rtl {
+    top: 0 !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    position: static !important;
+  }
+  
+  /* Ensure navbar stays at top and is visible */
+  .navbar {
+    position: relative !important;
+    z-index: 1000 !important;
+    margin-top: 0 !important;
+    top: 0 !important;
+  }
+  
+  /* Ensure main content starts below navbar */
+  main.container {
+    margin-top: 0 !important;
+  }
+  
+  /* Hide any Google Translate iframe banners */
+  iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+  }
+</style>
+<div id="google_translate_element" aria-hidden="true"></div>
+
+<!-- one-click buttons -->
+<div class="lang-toggle d-flex align-items-center">
+  <a href="#" id="gtranslate-hi" title="View in Hindi" class="text-white text-decoration-none me-1" style="font-size: 0.9rem;">हिंदी</a>
+  <span class="text-white-50 mx-1">|</span>
+  <a href="#" id="gtranslate-gu" title="View in Gujarati" class="text-white text-decoration-none mx-1" style="font-size: 0.9rem;">ગુજરાતી</a>
+  <span class="text-white-50 mx-1">|</span>
+  <a href="#" id="gtranslate-en" title="View in English" class="text-white text-decoration-none ms-1" style="font-size: 0.9rem;">English</a>
+</div>
+
+<script type="text/javascript">
+  // Google Translate init
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,gu',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+  // Helper to set Google Translate cookie (most reliable method)
+  function setGoogleTranslateCookie(lang) {
+    var cookieName = 'googtrans';
+    var cookieValue = '/en/' + lang;
+    var expires = new Date();
+    expires.setTime(expires.getTime() + (365 * 24 * 60 * 60 * 1000)); // 1 year
+    document.cookie = cookieName + '=' + cookieValue + ';expires=' + expires.toUTCString() + ';path=/';
+  }
+
+  // Helper to switch language - uses cookie method which is most reliable
+  function gTranslateTo(lang) {
+    // Set cookie first
+    setGoogleTranslateCookie(lang);
+    
+    // Try to use the widget if available
+    var combo = document.querySelector('select.goog-te-combo');
+    if (combo) {
+      try {
+        combo.value = lang;
+        var evt = new Event('change', { bubbles: true });
+        combo.dispatchEvent(evt);
+        // Small delay to let translation start, then reload if needed
+        setTimeout(function() {
+          if (!document.body.classList.contains('translated-ltr') && !document.body.classList.contains('translated-rtl')) {
+            window.location.reload();
+          }
+        }, 500);
+        return;
+      } catch(e) {
+        console.log('Widget method failed, using reload:', e);
+      }
+    }
+    
+    // Fallback: reload page with cookie set (most reliable)
+    window.location.reload();
+  }
+
+  // Initialize button handlers immediately (don't wait for widget)
+  function initTranslateButtons() {
+    var hi = document.getElementById('gtranslate-hi');
+    var gu = document.getElementById('gtranslate-gu');
+    var en = document.getElementById('gtranslate-en');
+    
+    if (hi) {
+      hi.addEventListener('click', function(e){
+        e.preventDefault();
+        gTranslateTo('hi');
+      });
+    }
+    if (gu) {
+      gu.addEventListener('click', function(e){
+        e.preventDefault();
+        gTranslateTo('gu');
+      });
+    }
+    
+    if (en) {
+      en.addEventListener('click', function(e){
+        e.preventDefault();
+        gTranslateTo('en');
+      });
+    }
+  }
+
+  // Start initialization when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTranslateButtons);
+  } else {
+    initTranslateButtons();
+  }
+
+  // Adjust navbar position when Google Translate bar appears
+  function adjustNavbarPosition() {
+    var translateBar = document.querySelector('.goog-te-banner-frame');
+    var body = document.body;
+    var navbar = document.querySelector('.navbar');
+    
+    if (translateBar && navbar) {
+      // Check if translate bar is visible
+      var translateBarHeight = translateBar.offsetHeight || 0;
+      
+      // Reset any inline styles that might interfere
+      body.style.paddingTop = '0';
+      body.style.top = '0';
+      
+      // Ensure navbar stays visible
+      navbar.style.position = 'relative';
+      navbar.style.marginTop = '0';
+      navbar.style.zIndex = '1000';
+    }
+  }
+
+  // Run adjustment after page load and periodically check
+  window.addEventListener('load', function() {
+    adjustNavbarPosition();
+    // Check again after a delay (Google Translate bar might load later)
+    setTimeout(adjustNavbarPosition, 500);
+    setTimeout(adjustNavbarPosition, 1000);
+    setTimeout(adjustNavbarPosition, 2000);
+  });
+
+  // Also adjust when translation happens
+  var observer = new MutationObserver(function(mutations) {
+    adjustNavbarPosition();
+  });
+  
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class'],
+    childList: true,
+    subtree: true
+  });
+</script>
+

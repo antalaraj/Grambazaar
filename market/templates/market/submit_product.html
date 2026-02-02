@@ -1,0 +1,46 @@
+{% extends 'market/base.html' %}
+{% block title %}Submit Product - GramBazaar{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <h2 class="mb-3">Submit Product Request</h2>
+        <form method="post" enctype="multipart/form-data" id="submit-product-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                {{ form.title }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                {{ form.description }}
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Price (₹)</label>
+                    {{ form.price }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Inventory</label>
+                    {{ form.inventory }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Category</label>
+                    {{ form.category }}
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Image</label>
+                {{ form.image }}
+                <div class="mt-2">
+                    <img id="image-preview" src="#" alt="Preview" style="max-width: 200px; display:none;" class="img-thumbnail">
+                </div>
+            </div>
+            <button class="btn btn-success w-100" type="submit">Submit for Approval</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+{% load static %}
+<script src="{% static 'market/js/submit_product.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'market/base.html' %}
+{% block title %}Order #{{ order.id }} - GramBazaar{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-3">Order Details</h2>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title mb-1">{{ order.product.title }}</h5>
+                    <p class="mb-0 small text-muted">Order #{{ order.id }}</p>
+                </div>
+                <div class="text-end">
+                    <p class="mb-1 small text-muted">Amount</p>
+                    <h4 class="text-success mb-0">₹ {{ order.amount }}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-header">Order Information</div>
+            <div class="card-body">
+                <dl class="row mb-0 small">
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8">{{ order.get_status_display }}</dd>
+
+                    <dt class="col-sm-4">Placed on</dt>
+                    <dd class="col-sm-8">{{ order.created_at|date:'Y-m-d H:i' }}</dd>
+
+                    <dt class="col-sm-4">Buyer name</dt>
+                    <dd class="col-sm-8">{{ order.buyer_name }}</dd>
+
+                    <dt class="col-sm-4">Contact</dt>
+                    <dd class="col-sm-8">{{ order.buyer_contact|default:'-' }}</dd>
+
+                    <dt class="col-sm-4">Delivery address</dt>
+                    <dd class="col-sm-8">{{ order.address|linebreaksbr }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <a href="{% url 'market:my_orders' %}" class="btn btn-outline-secondary btn-sm">Back to My Orders</a>
+    </div>
+</div>
+{% endblock %}

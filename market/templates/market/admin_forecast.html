@@ -1,0 +1,164 @@
+{% extends 'market/base.html' %}
+{% block title %}Smart Forecast - Admin{% endblock %}
+{% block content %}
+<h2 class="mb-3">Smart Demand Forecast{% if is_shg_view %} <span class="badge bg-secondary">Read-only</span>{% endif %}</h2>
+<p class="text-muted">Rule-based insights plus simple sales analytics from recent orders.</p>
+
+<form method="get" class="mb-3">
+    <div class="row g-2 align-items-end">
+        <div class="col-md-4">
+            <label for="product-select" class="form-label mb-1">Filter by product</label>
+            <select name="product" id="product-select" class="form-select form-select-sm">
+                <option value="">All products</option>
+                {% for p in products %}
+                    <option value="{{ p.id }}" {% if selected_product and p.id == selected_product.id %}selected{% endif %}>{{ p.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary btn-sm w-100">Apply</button>
+        </div>
+    </div>
+</form>
+
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">Sales Trend (Last 30 Days)</div>
+            <div class="card-body">
+                {% with trend=analytics.sales_trend %}
+                    {% if trend %}
+                        <p class="mb-1"><strong>Recent Orders:</strong> {{ trend.recent_orders }}</p>
+                        <p class="mb-1"><strong>Previous 30 Days:</strong> {{ trend.previous_orders }}</p>
+                        <p class="mb-0">
+                            <strong>Trend:</strong>
+                            {% if trend.direction == 'up' %}
+                                <span class="text-success">Up ({{ trend.change_pct }}%)</span>
+                            {% elif trend.direction == 'down' %}
+                                <span class="text-danger">Down ({{ trend.change_pct }}%)</span>
+                            {% else %}
+                                <span class="text-muted">Stable ({{ trend.change_pct }}%)</span>
+                            {% endif %}
+                        </p>
+                    {% else %}
+                        <p class="mb-0 text-muted">No orders found for trend analysis.</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">Top Areas (by Orders)</div>
+            <div class="card-body">
+                {% if analytics.top_areas %}
+                    <ul class="list-unstyled mb-0 small">
+                        {% for area in analytics.top_areas %}
+                            <li class="mb-1">
+                                <strong>{{ area.area }}</strong>
+                                <span class="text-muted">– {{ area.orders }} orders</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="mb-0 text-muted">No recent orders to compute top areas.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">Sales Graph (Last 30 Days)</div>
+            <div class="card-body">
+                {% with trend=analytics.sales_trend %}
+                    {% if trend %}
+                        <div style="height: 220px;">
+                            <canvas id="sales-trend-chart"
+                                    data-recent="{{ trend.recent_orders }}"
+                                    data-previous="{{ trend.previous_orders }}"></canvas>
+                        </div>
+                    {% else %}
+                        <p class="mb-0 text-muted">No orders found to display sales graph.</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="card shadow-sm">
+    <div class="card-header">Rule-based Forecast Alerts</div>
+    <div class="card-body">
+        {% if forecasts %}
+            <ul class="list-group list-group-flush">
+                {% for item in forecasts %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>{{ item.product }}</strong>
+                                <p class="mb-1 small text-muted">SHG: {{ item.shg }}</p>
+                                <p class="mb-0">{{ item.message }}</p>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge {% if item.priority == 'high' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
+                                    {{ item.priority|title }} priority
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="mb-0 text-muted">No forecast items generated.</p>
+        {% endif %}
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    (function() {
+        const canvas = document.getElementById('sales-trend-chart');
+        if (!canvas) return;
+
+        const recent = parseInt(canvas.dataset.recent || '0', 10);
+        const previous = parseInt(canvas.dataset.previous || '0', 10);
+        if (!recent && !previous) return;
+
+        const ctx = canvas.getContext('2d');
+        // eslint-disable-next-line no-undef
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Previous 30 days', 'Last 30 days'],
+                datasets: [{
+                    label: 'Orders',
+                    data: [previous, recent],
+                    borderColor: 'rgba(25, 135, 84, 0.9)',
+                    backgroundColor: 'rgba(25, 135, 84, 0.15)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 4,
+                    pointBackgroundColor: 'rgba(25, 135, 84, 1)',
+                    fill: true,
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0,
+                        },
+                    },
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+            },
+        });
+    })();
+</script>
+{% endblock %}

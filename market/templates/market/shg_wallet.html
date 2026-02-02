@@ -1,0 +1,48 @@
+{% extends 'market/base.html' %}
+{% block title %}Wallet & Ledger - GramBazaar{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h2>Wallet &amp; Ledger</h2>
+        <p class="text-muted mb-0">{{ shg.name }}</p>
+    </div>
+    <div class="text-end">
+        <p class="mb-1 text-muted">Current Balance</p>
+        <h3 class="text-success" id="wallet-balance-amount">₹ {{ shg.wallet_balance }}</h3>
+        <a href="?export=csv" class="btn btn-outline-success btn-sm mt-1">Download Monthly CSV</a>
+    </div>
+</div>
+
+<div class="card shadow-sm" data-wallet-poll-url="{% url 'market:shg_wallet_api' %}">
+    <div class="card-body p-0">
+        <table class="table mb-0 table-striped table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th class="text-end">Credit</th>
+                    <th class="text-end">Debit</th>
+                    <th class="text-end">Balance After</th>
+                </tr>
+            </thead>
+            <tbody id="ledger-body">
+                {% for entry in ledger_entries %}
+                    <tr>
+                        <td>{{ entry.date }}</td>
+                        <td>{{ entry.description }}</td>
+                        <td class="text-end">{% if entry.credit %}₹ {{ entry.credit }}{% endif %}</td>
+                        <td class="text-end">{% if entry.debit %}₹ {{ entry.debit }}{% endif %}</td>
+                        <td class="text-end">₹ {{ entry.balance_after }}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5" class="text-center text-muted small">No ledger entries yet.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+{% load static %}
+<script src="{% static 'market/js/wallet.js' %}"></script>
+{% endblock %}

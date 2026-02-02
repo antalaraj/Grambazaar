@@ -1,0 +1,238 @@
+﻿{% extends 'market/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "SHG Dashboard - GramBazaar" %}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h2 class="mb-1">{% trans "SHG Dashboard" %}</h2>
+        <p class="text-muted mb-0">{% trans "Track your products, wallet balance, smart forecasts and DigiTutor learning." %}</p>
+    </div>
+    <div class="text-end small d-none d-md-block">
+        <div><strong>{{ products|length }}</strong> {% trans "products" %}</div>
+        <div><strong>{{ courses|length }}</strong> {% trans "DigiTutor courses" %}</div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                <div>
+                    <h5 class="mb-1"><i class="fas fa-robot me-1"></i> {% trans "BrandSetu AI ChatBot" %}</h5>
+                    <p class="text-muted small mb-0">{% trans "Open your AI assistant in a new tab to get help with products, ideas and planning." %}</p>
+                </div>
+                <div class="mt-3 mt-md-0">
+                    <a href="http://127.0.0.1:8501" target="_blank" rel="noopener" class="btn btn-primary">
+                        {% trans "Open BrandSetu AI" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                <div>
+                    <h5 class="mb-1"><i class="fas fa-comments me-1"></i> {% trans "DigiSarathi AI" %}</h5>
+                    <p class="text-muted small mb-0">{% trans "Ask general questions about SHG management, marketplace usage and GramBazaar support." %}</p>
+                </div>
+                <div class="mt-3 mt-md-0">
+                    <a href="http://127.0.0.1:3000" target="_blank" rel="noopener" class="btn btn-outline-primary">
+                        {% trans "Open DigiSarathi AI" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mb-3">
+        <!-- Wallet Balance card -->
+        <div class="card shadow-sm mb-3" data-wallet-poll-url="{% url 'market:shg_wallet_api' %}">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-1">{{ shg.name }}</h3>
+                    <p class="mb-0 text-muted">{{ shg.city }}, {{ shg.state }}</p>
+                    <span class="badge bg-badge-{{ shg.verification_level }} text-uppercase mt-2">{{ shg.get_verification_level_display }} {% trans "SHG" %}</span>
+                </div>
+                <div class="text-end">
+                    <p class="mb-1 text-muted">{% trans "Wallet Balance" %}</p>
+                    <h3 class="text-success" id="dashboard-wallet-balance">₹ {{ shg.wallet_balance }}</h3>
+                    <a href="{% url 'market:shg_wallet' %}" class="btn btn-outline-success btn-sm mt-1">{% trans "View Wallet & Ledger" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Deliveries card -->
+        <div class="card shadow-sm mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-truck me-1"></i> {% trans "Upcoming Deliveries" %}</span>
+            </div>
+            <div class="card-body p-0">
+                {% if delivery_orders %}
+                    <div class="list-group list-group-flush small">
+                        {% for order in delivery_orders %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <strong>{{ order.product.title }}</strong>
+                                        <p class="mb-1 small text-muted">{% trans "Buyer:" %} {{ order.buyer_name }}</p>
+                                    </div>
+                                    <small class="text-muted ms-2">{{ order.created_at|date:'Y-m-d' }}</small>
+                                </div>
+                                <p class="mb-1 small"><span class="fw-semibold">{% trans "Deliver to:" %}</span> {{ order.address }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="p-3">
+                        <p class="mb-0 text-muted small">{% trans "No approved orders waiting for delivery." %}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Your Products card -->
+        <div class="card shadow-sm mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <span>{% trans "Your Products" %}</span>
+                    <span class="badge bg-light text-dark border">{{ products|length }} {% trans "total" %}</span>
+                </div>
+                <a href="{% url 'market:submit_product' %}" class="btn btn-sm btn-success">{% trans "Submit New Product" %}</a>
+            </div>
+            <div class="card-body p-0">
+                <table class="table mb-0 table-sm align-middle">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "Price" %}</th>
+                            <th>{% trans "Inventory" %}</th>
+                            <th>{% trans "Updated" %}</th>
+                            <th class="text-end">{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.title }}</td>
+                                <td><span class="status-chip status-{{ product.status }}">{{ product.get_status_display }}</span></td>
+                                <td>₹ {{ product.price }}</td>
+                                <td>{{ product.inventory }}</td>
+                                <td>{{ product.updated_at|date:'Y-m-d' }}</td>
+                                <td class="text-end">
+                                    {% if product.removal_requested %}
+                                        <span class="badge bg-warning text-dark">{% trans "Removal requested" %}</span>
+                                    {% elif product.status == 'live' or product.status == 'pending' %}
+                                        <a href="{% url 'market:request_product_removal' product.id %}" class="btn btn-sm btn-outline-danger">{% trans "Request removal" %}</a>
+                                    {% else %}
+                                        <span class="text-muted small">—</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="6" class="text-center text-muted small">{% trans "No products yet. Submit your first product!" %}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mb-3">
+        <!-- Smart Forecast Notifications card -->
+        <div class="card shadow-sm dashboard-notifications mb-3" data-poll-url="{% url 'market:notifications_poll' %}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-bell"></i> {% trans "Smart Forecast Notifications" %}</span>
+                <span class="badge bg-danger" id="notif-count" style="display:none"></span>
+            </div>
+            <div class="card-body p-0">
+                <div id="notif-list" class="list-group list-group-flush">
+                    {% if notifications %}
+                        {% for notif in notifications %}
+                            <div class="list-group-item notification-item" data-notif-id="{{ notif.id }}">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ notif.title }}</h6>
+                                    <small class="text-muted">{{ notif.created_at|date:'Y-m-d H:i' }}</small>
+                                </div>
+                                <p class="mb-1 small">{{ notif.message }}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                    <small class="text-muted">{% trans "Targeted to your SHG" %}</small>
+                                    <button class="btn btn-outline-secondary btn-sm" data-notif-id="{{ notif.id }}">{% trans "Mark as read" %}</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center p-3">
+                            <p class="text-muted small mb-0">{% trans "No new notifications." %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- DigiTutor Courses card -->
+        <div class="card shadow-sm mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>{% trans "DigiTutor Courses" %}</span>
+                <span class="badge bg-light text-dark border">{{ courses|length }} {% trans "available" %}</span>
+            </div>
+            <div class="card-body digi-learner" style="max-height: 260px; overflow-y: auto;">
+                {% for course in courses %}
+                    <div class="mb-2">
+                        <strong>{{ course.title }}</strong>
+                        <p class="small mb-1">{% trans "Language:" %} {{ course.get_language_display }}</p>
+                        <a href="{{ course.video_url }}" class="btn btn-sm btn-outline-success" target="_blank">{% trans "Watch Video" %}</a>
+                    </div>
+                {% empty %}
+                    <p class="small text-muted mb-0">{% trans "No courses added yet." %}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% load static %}
+<script src="{% static 'market/js/dashboard.js' %}"></script>
+<script src="{% static 'market/js/wallet.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const notifList = document.getElementById('notif-list');
+        if (!notifList) return;
+
+        notifList.addEventListener('click', function(e) {
+            const btn = e.target.closest('[data-notif-id]');
+            if (!btn) return;
+            const notifId = btn.getAttribute('data-notif-id');
+            if (!notifId) return;
+
+            fetch('{% url "market:mark_notification_read" 0 %}'.replace('0', notifId), {
+                method: 'POST',
+                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                credentials: 'same-origin'
+            }).then(r => r.json()).then(data => {
+                if (data.success) {
+                    const item = btn.closest('.notification-item');
+                    if (item) item.remove();
+                    const count = document.getElementById('notif-count');
+                    if (count) {
+                        const current = parseInt(count.textContent) || 0;
+                        count.textContent = Math.max(0, current - 1);
+                        if (count.textContent === '0') count.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+

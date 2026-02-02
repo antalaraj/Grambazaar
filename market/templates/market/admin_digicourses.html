@@ -1,0 +1,78 @@
+{% extends 'market/base.html' %}
+{% block title %}DigiTutor Courses - Admin{% endblock %}
+{% block content %}
+<h2 class="mb-3">DigiTutor Courses</h2>
+<div class="row">
+    <div class="col-md-5 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header">Add New Course</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Language</label>
+                        {{ form.language }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Video URL (YouTube or other)</label>
+                        {{ form.video_url }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Duration (minutes)</label>
+                        {{ form.duration_minutes }}
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="fas fa-plus-circle me-1"></i>Add Course
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header">Existing Courses</div>
+            <div class="card-body p-0">
+                <table class="table table-sm mb-0 align-middle">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Language</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                            <tr>
+                                <td>{{ course.title }}</td>
+                                <td>{{ course.get_language_display }}</td>
+                                <td>{{ course.duration_minutes }} min</td>
+                                <td>
+                                    <a href="{{ course.video_url }}" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                                    <form method="post" action="{% url 'market:admin_delete_digicourse' course.id %}" class="d-inline ms-1" onsubmit="return confirm('Delete this course?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted small">No courses added yet.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

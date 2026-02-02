@@ -1,0 +1,169 @@
+body {
+    background-color: #f6f7fb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.product-card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-detail .product-detail-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.product-detail img {
+    max-height: 360px;
+    object-fit: cover;
+}
+
+.product-detail-image-wrapper {
+    max-height: 360px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.price {
+    font-weight: 600;
+    color: #198754;
+}
+
+.badge.bg-badge-bronze {
+    background: #cd7f32;
+}
+
+.badge.bg-badge-silver {
+    background: #c0c0c0;
+}
+
+.badge.bg-badge-gold {
+    background: #ffd700;
+    color: #333;
+}
+
+.status-chip {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+}
+
+.status-draft {
+    background: #e2e3e5;
+}
+
+.status-pending {
+    background: #fff3cd;
+}
+
+.status-live {
+    background: #d1e7dd;
+}
+
+.status-rejected {
+    background: #f8d7da;
+}
+
+/* Smart Forecast Notifications (SHG Dashboard) */
+.dashboard-notifications {
+    border-left: 4px solid #0d6efd;
+}
+
+.stat-card {
+    border-left: 4px solid #198754;
+}
+
+.card {
+    border: 0;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.card-header {
+    font-weight: 600;
+    background-color: #ffffff;
+}
+
+.dashboard-notifications .card-header {
+    background: linear-gradient(90deg, #0d6efd, #2563eb);
+    color: #ffffff;
+}
+
+.dashboard-notifications .card-header .badge {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dashboard-notifications #notif-list {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.dashboard-notifications .list-group-item.notification-item {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 0;
+    padding: 0.55rem 0.9rem;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.dashboard-notifications .list-group-item.notification-item:last-child {
+    border-bottom: 0;
+}
+
+.dashboard-notifications .list-group-item.notification-item:hover {
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.dashboard-notifications h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.dashboard-notifications small.text-muted {
+    font-size: 0.75rem;
+}
+
+.dashboard-notifications .btn-outline-secondary.btn-sm {
+    padding: 0.15rem 0.6rem;
+    font-size: 0.75rem;
+}
+
+.dashboard-notifications .card-footer {
+    background-color: #f8fafc;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding: 0.45rem 0.9rem;
+}
+
+.dashboard-notifications .card-footer .btn {
+    font-size: 0.78rem;
+}
+
+/* Subtle scrollbar styling for notifications list */
+.dashboard-notifications #notif-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dashboard-notifications #notif-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-notifications #notif-list::-webkit-scrollbar-thumb {
+    background-color: rgba(15, 23, 42, 0.16);
+    border-radius: 999px;
+}
+
+.digi-learner .btn {
+    font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+    .product-card img {
+        height: 140px;
+    }
+}

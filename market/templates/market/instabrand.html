@@ -1,0 +1,41 @@
+{% extends 'market/base.html' %}
+{% block title %}InstaBrand AI Mock - GramBazaar{% endblock %}
+{% block content %}
+<h2 class="mb-3">InstaBrand Mock AI Branding</h2>
+<p class="text-muted">This is a mock API page that simulates AI-generated branding content for SHG products.</p>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <form id="instabrand-form" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Image URL</label>
+                <input type="url" name="image_url" class="form-control" placeholder="https://..." required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select name="category" class="form-select">
+                    <option value="handicrafts">Handicrafts</option>
+                    <option value="food">Food</option>
+                    <option value="textiles">Textiles</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">SHG ID (demo)</label>
+                <input type="number" name="shg_id" class="form-control" placeholder="1">
+            </div>
+            <button class="btn btn-success" type="submit">Generate Mock Branding</button>
+        </form>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card" id="instabrand-result" style="display:none;">
+            <div class="card-body">
+                <h4 id="ib-title"></h4>
+                <p id="ib-description"></p>
+                <p class="text-muted" id="ib-hashtags"></p>
+                <p class="small text-muted mb-0">Poster URL: <span id="ib-poster"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

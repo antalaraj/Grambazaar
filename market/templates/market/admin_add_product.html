@@ -1,0 +1,70 @@
+{% extends 'market/base.html' %}
+{% block title %}Add Product - Admin{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-3">{% if editing %}Edit Product{% else %}Add New Product{% endif %}</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="mb-3">
+                <label class="form-label">SHG</label>
+                {{ form.shg }}
+                {{ form.shg.errors }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                {{ form.title }}
+                {{ form.title.errors }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                {{ form.description }}
+                {{ form.description.errors }}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Price (₹)</label>
+                    {{ form.price }}
+                    {{ form.price.errors }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Inventory</label>
+                    {{ form.inventory }}
+                    {{ form.inventory.errors }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Category</label>
+                    {{ form.category }}
+                    {{ form.category.errors }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Image (optional)</label>
+                {{ form.image }}
+                {{ form.image.errors }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                {{ form.status }}
+                {{ form.status.errors }}
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'market:admin_dashboard' %}" class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-success">{% if editing %}Update Product{% else %}Save Product{% endif %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

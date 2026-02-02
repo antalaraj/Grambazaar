@@ -1,0 +1,52 @@
+{% extends 'market/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Pending Products - Admin" %}{% endblock %}
+{% block content %}
+<h2 class="mb-3">{% trans "Pending Product Approvals" %}</h2>
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table mb-0 table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>{% trans "Product" %}</th>
+                    <th>{% trans "SHG" %}</th>
+                    <th>{% trans "Price" %}</th>
+                    <th>{% trans "Inventory" %}</th>
+                    <th>{% trans "Submitted" %}</th>
+                    <th>{% trans "Type" %}</th>
+                    <th>{% trans "Action" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in pending_products %}
+                    <tr>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.shg.name }}</td>
+                        <td>₹ {{ product.price }}</td>
+                        <td>{{ product.inventory }}</td>
+                        <td>{{ product.created_at|date:'Y-m-d' }}</td>
+                        <td>
+                            {% if product.removal_requested %}
+                                <span class="badge bg-warning text-dark">{% trans "Removal Request" %}</span>
+                            {% else %}
+                                <span class="badge bg-info text-dark">{% trans "New Product" %}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if product.removal_requested %}
+                                <a href="{% url 'market:approve_removal' product.id %}" class="btn btn-sm btn-danger">{% trans "Approve Removal" %}</a>
+                                <a href="{% url 'market:reject_removal' product.id %}" class="btn btn-sm btn-outline-secondary ms-1">{% trans "Reject" %}</a>
+                            {% else %}
+                                <a href="{% url 'market:approve_product' product.id %}" class="btn btn-sm btn-success">{% trans "Approve" %}</a>
+                                <a href="{% url 'market:reject_product' product.id %}" class="btn btn-sm btn-outline-danger ms-1">{% trans "Reject" %}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="7" class="text-center text-muted small">{% trans "No pending products." %}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

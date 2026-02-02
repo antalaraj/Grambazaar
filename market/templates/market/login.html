@@ -1,0 +1,356 @@
+{% extends 'market/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Login - GramBazaar" %}{% endblock %}
+{% block content %}
+<style>
+.login-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 20px auto;
+    max-width: 500px;
+    border: 1px solid #dee2e6;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h2 {
+    color: #28a745;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.login-header .subtitle {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.login-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.login-section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.shg-icon {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.buyer-icon {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.section-description {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.form-label i {
+    margin-right: 8px;
+    color: #28a745;
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    transform: translateY(-1px);
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+}
+
+.btn-buyer {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-buyer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    color: white;
+    text-decoration: none;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f8f9fa;
+}
+
+.register-link a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #20c997;
+    text-decoration: underline;
+}
+
+.divider {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #dee2e6, transparent);
+}
+
+.divider span {
+    background: #f8f9fa;
+    padding: 0 20px;
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.error-list {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    color: #721c24;
+    font-size: 0.9rem;
+}
+
+.error-list ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error-list li {
+    margin-bottom: 5px;
+}
+
+.error-list li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .login-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+</style>
+
+<div class="login-container">
+    <div class="login-header">
+        <h2><i class="fas fa-store me-2"></i>{% trans "Welcome to GramBazaar" %}</h2>
+        <p class="subtitle">{% trans "Choose your login type to continue" %}</p>
+    </div>
+
+    <!-- SHG/Admin Login -->
+    <div class="login-section">
+        <div class="section-header">
+            <div class="section-icon shg-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div>
+                <h3 class="section-title">{% trans "SHG & Admin Login" %}</h3>
+                <p class="section-description">{% trans "For Self Help Groups and administrators" %}</p>
+            </div>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="error-list">
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-user"></i>
+                    {% trans "Username" %}
+                </label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="text-danger small mt-1">
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-lock"></i>
+                    {% trans "Password" %}
+                </label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="text-danger small mt-1">
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-login">
+                <i class="fas fa-sign-in-alt me-2"></i>{% trans "Login as SHG/Admin" %}
+            </button>
+        </form>
+        
+        <div class="register-link">
+            <a href="{% url 'market:shg_signup' %}">
+                <i class="fas fa-user-plus me-1"></i>{% trans "New SHG? Register here" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider">
+        <span>{% trans "OR" %}</span>
+    </div>
+
+    <!-- Buyer Login -->
+    <div class="login-section">
+        <div class="section-header">
+            <div class="section-icon buyer-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div>
+                <h3 class="section-title">{% trans "Buyer Login" %}</h3>
+                <p class="section-description">{% trans "For customers who want to purchase products" %}</p>
+            </div>
+        </div>
+        
+        <a href="{% url 'market:buyer_login' %}" class="btn-buyer">
+            <i class="fas fa-sign-in-alt me-2"></i>{% trans "Login as Buyer" %}
+        </a>
+        
+        <div class="register-link">
+            <a href="{% url 'market:buyer_register' %}">
+                <i class="fas fa-user-plus me-1"></i>{% trans "New Buyer? Register as Buyer" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

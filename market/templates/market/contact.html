@@ -1,0 +1,27 @@
+{% extends 'market/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Contact Us - GramBazaar" %}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <h2 class="mb-3">{% trans "Contact Us" %}</h2>
+        <p class="text-muted mb-4">{% trans "Have questions about GramBazaar or want to get in touch with the team? Reach out using the details below." %}</p>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h5 class="card-title mb-2">{% trans "Support & Queries" %}</h5>
+                <p class="mb-1"><strong>{% trans "Email:" %}</strong> support@grambazaar.example</p>
+                <p class="mb-1"><strong>{% trans "Phone:" %}</strong> +91-98765-43210</p>
+                <p class="mb-0 small text-muted">{% trans "Available Monday to Saturday, 10:00 AM to 6:00 PM IST." %}</p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-2">{% trans "Office Address" %}</h5>
+                <p class="mb-0">{% trans "GramBazaar Initiative" %}<br>{% trans "Example Street, Example City" %}<br>{% trans "India" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

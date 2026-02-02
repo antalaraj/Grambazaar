@@ -1,0 +1,44 @@
+{% extends 'market/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Home - GramBazaar" %}{% endblock %}
+{% block content %}
+<div class="row mb-4 align-items-center">
+    <div class="col-md-7">
+        <h1 class="display-5 fw-bold text-success">{% trans "Welcome to GramBazaar" %}</h1>
+        <p class="lead">{% trans "A rural e‑commerce marketplace connecting Self Help Groups (SHGs) with buyers across India." %}</p>
+        <a href="{% url 'market:marketplace' %}" class="btn btn-success btn-lg me-2">{% trans "Explore Marketplace" %}</a>
+        <a href="{% url 'market:shg_signup' %}" class="btn btn-outline-success btn-lg">{% trans "Register your SHG" %}</a>
+    </div>
+    <div class="col-md-5 text-center">
+        <img src="https://images.pexels.com/photos/6214472/pexels-photo-6214472.jpeg" class="img-fluid rounded shadow" alt="Rural artisans">
+    </div>
+</div>
+
+<h3 class="mb-3">{% trans "Featured Products" %}</h3>
+<div class="row g-3">
+    {% for product in featured_products %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card product-card h-100">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">
+                {% else %}
+                    <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height:180px;">
+                        <span class="text-muted small">{% trans "No image" %}</span>
+                    </div>
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text small text-muted mb-1">{{ product.shg.name }}</p>
+                    <p class="card-text flex-grow-1">{{ product.description|truncatechars:80 }}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="price">₹ {{ product.price }}</span>
+                        <a href="{% url 'market:product_detail' product.slug %}" class="btn btn-sm btn-outline-success">{% trans "View" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>{% trans "No featured products yet. Check back soon!" %}</p>
+    {% endfor %}
+</div>
+{% endblock %}

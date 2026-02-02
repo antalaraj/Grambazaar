@@ -1,0 +1,801 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-12 17:48+0530\n"
+"PO-Revision-Date: 2025-12-12 17:48+0530\n"
+"Last-Translator: GramBazaar Team\n"
+"Language-Team: Hindi <hi@li.org>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\grambazaar\settings.py:112 .\market\models.py:109
+msgid "English"
+msgstr "अंग्रेजी"
+
+#: .\grambazaar\settings.py:113 .\market\models.py:108
+msgid "Hindi"
+msgstr "हिंदी"
+
+#: .\market\models.py:10
+msgid "Bronze"
+msgstr ""
+
+#: .\market\models.py:11
+msgid "Silver"
+msgstr ""
+
+#: .\market\models.py:12
+msgid "Gold"
+msgstr ""
+
+#: .\market\models.py:35
+msgid "Draft"
+msgstr ""
+
+#: .\market\models.py:36
+msgid "Pending"
+msgstr ""
+
+#: .\market\models.py:37
+msgid "Live"
+msgstr ""
+
+#: .\market\models.py:38
+msgid "Rejected"
+msgstr ""
+
+#: .\market\models.py:42 .\market\templates\market\marketplace.html:10
+msgid "Handicrafts"
+msgstr ""
+
+#: .\market\models.py:43 .\market\templates\market\marketplace.html:11
+msgid "Food Products"
+msgstr ""
+
+#: .\market\models.py:44 .\market\templates\market\marketplace.html:12
+msgid "Textiles"
+msgstr ""
+
+#: .\market\models.py:45 .\market\templates\market\marketplace.html:13
+msgid "Pottery"
+msgstr ""
+
+#: .\market\models.py:46 .\market\templates\market\marketplace.html:14
+msgid "Jewelry"
+msgstr ""
+
+#: .\market\models.py:47 .\market\templates\market\marketplace.html:15
+msgid "Other"
+msgstr ""
+
+#: .\market\models.py:86
+msgid "Pending Admin Approval"
+msgstr ""
+
+#: .\market\models.py:87
+msgid "Approved"
+msgstr ""
+
+#: .\market\models.py:88
+msgid "Shipped"
+msgstr ""
+
+#: .\market\models.py:89
+msgid "Delivered"
+msgstr ""
+
+#: .\market\models.py:90
+msgid "Cancelled"
+msgstr ""
+
+#: .\market\models.py:110
+msgid "Regional Language"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:3
+msgid "Buyer Orders - Admin"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:5
+msgid "Buyer Orders"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:11
+msgid "ID"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:12
+#: .\market\templates\market\admin_pending_products.html:11
+msgid "Product"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:13
+msgid "Buyer"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:14
+#: .\market\templates\market\buyer_order.html:27
+msgid "Contact"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:15
+#: .\market\templates\market\buyer_order.html:15
+msgid "Amount"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:16
+#: .\market\templates\market\shg_dashboard.html:115
+msgid "Status"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:17
+msgid "Created"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:18
+#: .\market\templates\market\admin_pending_products.html:16
+msgid "Action"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:33
+#: .\market\templates\market\admin_pending_products.html:28
+msgid "Approve"
+msgstr ""
+
+#: .\market\templates\market\admin_orders.html:38
+msgid "No orders yet."
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:3
+msgid "Pending Products - Admin"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:5
+msgid "Pending Product Approvals"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:12
+#: .\market\templates\market\product_detail.html:34
+#: .\market\templates\market\shg_dashboard.html:62
+msgid "SHG"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:13
+#: .\market\templates\market\shg_dashboard.html:116
+msgid "Price"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:14
+#: .\market\templates\market\shg_dashboard.html:117
+msgid "Inventory"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:15
+msgid "Submitted"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:29
+msgid "Reject"
+msgstr ""
+
+#: .\market\templates\market\admin_pending_products.html:33
+msgid "No pending products."
+msgstr ""
+
+#: .\market\templates\market\base.html:6
+msgid "GramBazaar - Rural Marketplace"
+msgstr ""
+
+#: .\market\templates\market\base.html:16
+#: .\market\templates\market\base.html:90
+#: .\market\templates\market\product_detail.html:3
+msgid "GramBazaar"
+msgstr "ग्रामबाजार"
+
+#: .\market\templates\market\base.html:24
+msgid "Home"
+msgstr "होम"
+
+#: .\market\templates\market\base.html:27
+#: .\market\templates\market\marketplace.html:6
+msgid "Marketplace"
+msgstr "बाज़ार"
+
+#: .\market\templates\market\base.html:30
+#: .\market\templates\market\base.html:99
+#: .\market\templates\market\contact.html:7
+msgid "Contact Us"
+msgstr "संपर्क करें"
+
+#: .\market\templates\market\base.html:38
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+#: .\market\templates\market\base.html:43
+msgid "My Profile"
+msgstr "मेरी प्रोफ़ाइल"
+
+#: .\market\templates\market\base.html:46
+msgid "My Orders"
+msgstr "मेरे ऑर्डर"
+
+#: .\market\templates\market\base.html:50
+msgid "Logout"
+msgstr "लॉगआउट"
+
+#: .\market\templates\market\base.html:54
+#: .\market\templates\market\buyer\login.html:45
+msgid "Login"
+msgstr "लॉगिन"
+
+#: .\market\templates\market\base.html:57
+#: .\market\templates\market\signup_shg.html:65
+msgid "Register SHG"
+msgstr "SHG पंजीकरण करें"
+
+#: .\market\templates\market\base.html:64
+msgid "View in English"
+msgstr "अंग्रेजी में देखें"
+
+#: .\market\templates\market\base.html:91
+msgid "Empowering rural Self Help Groups through a digital marketplace."
+msgstr "एक डिजिटल बाज़ार के माध्यम से ग्रामीण स्वयं सहायता समूहों को सशक्त बनाना।"
+
+#: .\market\templates\market\base.html:92
+msgid "Connecting SHGs, buyers, and communities across India."
+msgstr "भारत भर में SHG, खरीदारों और समुदायों को जोड़ना।"
+
+#: .\market\templates\market\base.html:95
+msgid "Quick Links"
+msgstr "त्वरित लिंक"
+
+#: .\market\templates\market\base.html:97
+msgid "Browse Marketplace"
+msgstr "बाज़ार ब्राउज़ करें"
+
+#: .\market\templates\market\base.html:98
+#: .\market\templates\market\home.html:10
+msgid "Register your SHG"
+msgstr "अपना SHG पंजीकृत करें"
+
+#: .\market\templates\market\base.html:103
+msgid "Get in Touch"
+msgstr "संपर्क में रहें"
+
+#: .\market\templates\market\base.html:104
+#: .\market\templates\market\contact.html:13
+msgid "Email:"
+msgstr "ईमेल:"
+
+#: .\market\templates\market\base.html:105
+#: .\market\templates\market\contact.html:14
+msgid "Phone:"
+msgstr "फ़ोन:"
+
+#: .\market\templates\market\base.html:106
+msgid "All rights reserved."
+msgstr "सभी अधिकार सुरक्षित।"
+
+#: .\market\templates\market\buyer\login.html:3
+#: .\market\templates\market\buyer\login.html:11
+#: .\market\templates\market\login.html:340
+msgid "Buyer Login"
+msgstr ""
+
+#: .\market\templates\market\buyer\login.html:26
+#: .\market\templates\market\login.html:289
+#: .\market\templates\market\signup_shg.html:15
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+#: .\market\templates\market\buyer\login.html:33
+#: .\market\templates\market\login.html:304
+#: .\market\templates\market\signup_shg.html:25
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: .\market\templates\market\buyer\login.html:49
+msgid "Don't have an account?"
+msgstr ""
+
+#: .\market\templates\market\buyer\login.html:49
+msgid "Register here"
+msgstr ""
+
+#: .\market\templates\market\buyer_order.html:3
+msgid "Checkout"
+msgstr ""
+
+#: .\market\templates\market\buyer_order.html:7
+msgid "Order Now"
+msgstr ""
+
+#: .\market\templates\market\buyer_order.html:23
+msgid "Buyer name"
+msgstr ""
+
+#: .\market\templates\market\buyer_order.html:31
+msgid "Address"
+msgstr ""
+
+#: .\market\templates\market\buyer_order.html:34
+msgid "Place Order"
+msgstr ""
+
+#: .\market\templates\market\contact.html:3
+msgid "Contact Us - GramBazaar"
+msgstr ""
+
+#: .\market\templates\market\contact.html:8
+msgid ""
+"Have questions about GramBazaar or want to get in touch with the team? Reach "
+"out using the details below."
+msgstr ""
+
+#: .\market\templates\market\contact.html:12
+msgid "Support & Queries"
+msgstr ""
+
+#: .\market\templates\market\contact.html:15
+msgid "Available Monday to Saturday, 10:00 AM to 6:00 PM IST."
+msgstr ""
+
+#: .\market\templates\market\contact.html:21
+msgid "Office Address"
+msgstr ""
+
+#: .\market\templates\market\contact.html:22
+msgid "GramBazaar Initiative"
+msgstr ""
+
+#: .\market\templates\market\contact.html:22
+msgid "Example Street, Example City"
+msgstr ""
+
+#: .\market\templates\market\contact.html:22
+msgid "India"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:3
+#: .\market\templates\market\fake_payment.html:7
+msgid "Payment"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:8
+msgid "Select your payment method and confirm your order."
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:14
+#, python-format
+msgid "From %(shg_name)s"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:17
+msgid "Amount to pay"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:24
+msgid "Buyer & Delivery Details"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:26
+msgid "Name:"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:27
+msgid "Contact:"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:28
+msgid "Address:"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:35
+msgid "Payment Method"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:40
+msgid "Debit / Credit Card"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:46
+msgid "UPI"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:52
+msgid "Cash on Delivery (COD)"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:58
+msgid "Pay & Place Order"
+msgstr ""
+
+#: .\market\templates\market\fake_payment.html:60
+msgid "Back to Order Form"
+msgstr ""
+
+#: .\market\templates\market\home.html:3
+msgid "Home - GramBazaar"
+msgstr "होम - ग्रामबाजार"
+
+#: .\market\templates\market\home.html:7
+#: .\market\templates\market\login.html:258
+msgid "Welcome to GramBazaar"
+msgstr "ग्रामबाजार में आपका स्वागत है"
+
+#: .\market\templates\market\home.html:8
+msgid ""
+"A rural e‑commerce marketplace connecting Self Help Groups (SHGs) with "
+"buyers across India."
+msgstr "एक ग्रामीण ई-कॉमर्स बाज़ार जो स्वयं सहायता समूहों (SHG) को पूरे भारत के खरीदारों से जोड़ता है।"
+
+#: .\market\templates\market\home.html:9
+msgid "Explore Marketplace"
+msgstr "बाज़ार देखें"
+
+#: .\market\templates\market\home.html:17
+msgid "Featured Products"
+msgstr "विशेष उत्पाद"
+
+#: .\market\templates\market\home.html:26
+#: .\market\templates\market\marketplace.html:29
+msgid "No image"
+msgstr "कोई छवि नहीं"
+
+#: .\market\templates\market\home.html:35
+msgid "View"
+msgstr "देखें"
+
+#: .\market\templates\market\home.html:41
+msgid "No featured products yet. Check back soon!"
+msgstr "अभी कोई विशेष उत्पाद नहीं है। कृपया जल्द ही फिर देखें!"
+
+#: .\market\templates\market\login.html:3
+msgid "Login - GramBazaar"
+msgstr ""
+
+#: .\market\templates\market\login.html:259
+msgid "Choose your login type to continue"
+msgstr ""
+
+#: .\market\templates\market\login.html:269
+msgid "SHG & Admin Login"
+msgstr ""
+
+#: .\market\templates\market\login.html:270
+msgid "For Self Help Groups and administrators"
+msgstr ""
+
+#: .\market\templates\market\login.html:317
+msgid "Login as SHG/Admin"
+msgstr ""
+
+#: .\market\templates\market\login.html:323
+msgid "New SHG? Register here"
+msgstr ""
+
+#: .\market\templates\market\login.html:330
+msgid "OR"
+msgstr ""
+
+#: .\market\templates\market\login.html:341
+msgid "For customers who want to purchase products"
+msgstr ""
+
+#: .\market\templates\market\login.html:346
+msgid "Login as Buyer"
+msgstr ""
+
+#: .\market\templates\market\login.html:351
+msgid "New Buyer? Register as Buyer"
+msgstr ""
+
+#: .\market\templates\market\marketplace.html:3
+msgid "Marketplace - GramBazaar"
+msgstr ""
+
+#: .\market\templates\market\marketplace.html:9
+msgid "All Categories"
+msgstr "सभी श्रेणियां"
+
+#: .\market\templates\market\marketplace.html:17
+msgid "Filter"
+msgstr "फ़िल्टर"
+
+#: .\market\templates\market\marketplace.html:39
+msgid "Details"
+msgstr "विवरण"
+
+#: .\market\templates\market\marketplace.html:45
+msgid "No products found."
+msgstr "कोई उत्पाद नहीं मिला।"
+
+#: .\market\templates\market\product_detail.html:15
+msgid "No image available"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:21
+msgid "in stock"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:32
+#, python-format
+msgid "Sold by %(shg_name)s"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:44
+msgid "Authentic SHG-made product"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:45
+msgid "Every purchase supports rural livelihoods"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:46
+msgid "Dispatch after admin approval and SHG confirmation"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:52
+msgid "Buy Now"
+msgstr "अभी खरीदें"
+
+#: .\market\templates\market\product_detail.html:55
+msgid "Orders are confirmed after admin approval and SHG processing."
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:58
+msgid "Out of stock"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:72
+msgid "Customer Reviews"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:74
+#, python-format
+msgid ""
+"\n"
+"                        %(count)s review\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        %(count)s reviews\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\market\templates\market\product_detail.html:104
+msgid "No reviews yet. Be the first to review this product."
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:111
+msgid "Write a Review"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:118
+msgid "Rating"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:132
+msgid "Comment (optional)"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:133
+msgid "Share your experience (optional)"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:138
+msgid "Submit Review"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:142
+msgid "Please"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:142
+msgid "login as buyer"
+msgstr ""
+
+#: .\market\templates\market\product_detail.html:142
+msgid "to write a review."
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:4
+msgid "SHG Dashboard - GramBazaar"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:9
+msgid "SHG Dashboard"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:10
+msgid ""
+"Track your products, wallet balance, smart forecasts and DigiTutor learning."
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:13
+msgid "products"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:14
+msgid "DigiTutor courses"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:23
+msgid "BrandSetu AI ChatBot"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:24
+msgid ""
+"Open your AI assistant in a new tab to get help with products, ideas and "
+"planning."
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:28
+msgid "Open BrandSetu AI"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:41
+msgid "DigiSarathi AI"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:42
+msgid ""
+"Ask general questions about SHG management, marketplace usage and GramBazaar "
+"support."
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:46
+msgid "Open DigiSarathi AI"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:65
+msgid "Wallet Balance"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:67
+msgid "View Wallet & Ledger"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:75
+msgid "Upcoming Deliveries"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:85
+msgid "Buyer:"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:89
+msgid "Deliver to:"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:95
+msgid "No approved orders waiting for delivery."
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:105
+msgid "Your Products"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:106
+msgid "total"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:108
+msgid "Submit New Product"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:114
+msgid "Title"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:118
+msgid "Updated"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:131
+msgid "No products yet. Submit your first product!"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:143
+msgid "Smart Forecast Notifications"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:157
+msgid "Targeted to your SHG"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:158
+msgid "Mark as read"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:164
+msgid "No new notifications."
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:174
+msgid "DigiTutor Courses"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:175
+msgid "available"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:181
+msgid "Language:"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:182
+msgid "Watch Video"
+msgstr ""
+
+#: .\market\templates\market\shg_dashboard.html:185
+msgid "No courses added yet."
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:3
+msgid "Register SHG - GramBazaar"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:9
+msgid "SHG Registration"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:19
+msgid "Email"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:29
+msgid "Confirm Password"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:34
+msgid "SHG Name"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:39
+msgid "Contact Person"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:43
+msgid "Phone"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:49
+msgid "State"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:53
+msgid "City"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:58
+msgid "Description"
+msgstr ""
+
+#: .\market\templates\market\signup_shg.html:62
+msgid "Logo"
+msgstr ""
+
+#: .\market\views.py:658
+#, python-format
+msgid ""
+"Low inventory for %(product_title)s! Only %(inventory)s items left. We "
+"recommend increasing production."
+msgstr ""
+
+#: .\market\views.py:681
+#, python-format
+msgid ""
+"Seasonal demand expected for %(product_title)s around festival periods. Plan "
+"extra stock and promotions."
+msgstr ""

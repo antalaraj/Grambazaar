@@ -1,0 +1,267 @@
+<!-- d:\Grambazaar\grambazaar\market\templates\market\admin_dashboard.html -->
+{% extends 'market/base.html' %}
+{% block title %}Admin Dashboard - GramBazaar{% endblock %}
+{% block content %}
+<h2 class="mb-1">Admin Dashboard</h2>
+<p class="text-muted mb-3">Monitor SHGs, products, orders, reviews and learning content in one place.</p>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted mb-1">Total SHGs</p>
+                <h3>{{ shg_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted mb-1">Total Products</p>
+                <h3>{{ product_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted mb-1">Pending Products</p>
+                <h3>{{ pending_products }}</h3>
+                <a href="{% url 'market:admin_pending_products' %}" class="small">View list</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body">
+                <p class="text-muted mb-1">Pending Orders</p>
+                <h3>{{ pending_orders }}</h3>
+                <a href="{% url 'market:admin_orders' %}" class="small">Review orders</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Live Products (Marketplace)</span>
+        <a href="{% url 'market:admin_add_product' %}" class="btn btn-primary btn-sm">Add New Product</a>
+    </div>
+    <div class="card-body p-0">
+        <table class="table mb-0 table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>SHG</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Inventory</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in live_products %}
+                    <tr>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.shg.name }}</td>
+                        <td>{{ product.get_category_display }}</td>
+                        <td>₹ {{ product.price }}</td>
+                        <td>{{ product.inventory }}</td>
+                        <td>{{ product.get_status_display }}</td>
+                        <td>
+                            <a href="{% url 'market:admin_edit_product' product.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <button type="button" class="btn btn-sm btn-outline-danger ms-1" 
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal{{ product.id }}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ product.id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>Delete Product
+                                    </h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="alert alert-warning" role="alert">
+                                        <i class="fas fa-exclamation-circle me-2"></i>
+                                        <strong>Warning:</strong> This action cannot be undone.
+                                    </div>
+                                    
+                                    <h6>Product Details:</h6>
+                                    <ul class="list-unstyled mb-3">
+                                        <li><strong>Title:</strong> {{ product.title }}</li>
+                                        <li><strong>SHG:</strong> {{ product.shg.name }}</li>
+                                        <li><strong>Category:</strong> {{ product.get_category_display }}</li>
+                                        <li><strong>Price:</strong> ₹{{ product.price }}</li>
+                                        <li><strong>Inventory:</strong> {{ product.inventory }}</li>
+                                        <li><strong>Status:</strong> {{ product.get_status_display }}</li>
+                                    </ul>
+                                    
+                                    <p class="mb-0">Are you sure you want to delete this product?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="post" action="{% url 'market:admin_delete_product' product.id %}" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash me-2"></i>Yes, Delete
+                                        </button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="fas fa-times me-2"></i>Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted small">No live products yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Smart Demand Forecast</span>
+                <small class="text-muted" id="forecast-last-updated">Live · updating...</small>
+            </div>
+            <div class="card-body">
+                <p class="mb-2">Real-time rule-based insights on low inventory and seasonal food products.</p>
+                <div id="forecast-list" class="mb-3 small text-muted">
+                    Loading latest forecast...
+                </div>
+                <a href="{% url 'market:generate_forecast' %}" class="btn btn-success btn-sm">Open Detailed Forecast</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Customer Reviews</span>
+                <span class="badge bg-light text-dark border">{{ recent_reviews|length }} recent</span>
+            </div>
+            <div class="card-body small">
+                {% if recent_reviews %}
+                    <ul class="list-group list-group-flush">
+                        {% for review in recent_reviews %}
+                            <li class="list-group-item px-0">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="me-2">
+                                        <strong>{{ review.product.title }}</strong>
+                                        <div class="mb-1">
+                                            {% for i in '12345' %}
+                                                {% if forloop.counter <= review.rating %}
+                                                    <i class="fas fa-star text-warning"></i>
+                                                {% else %}
+                                                    <i class="far fa-star text-muted"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% if review.comment %}
+                                            <p class="mb-0">{{ review.comment|truncatechars:120 }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <small class="text-muted text-nowrap">{{ review.created_at|date:'Y-m-d' }}</small>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted mb-0">No customer reviews captured yet.</p>
+                {% endif %}
+                <p class="text-muted mt-2 mb-0 small">
+                    These qualitative reviews help complement the rule-based Smart Demand Forecast.
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header">DigiTutor  Management</div>
+            <div class="card-body">
+                <p class="mb-2">Manage learning videos shown to SHGs on their dashboard.</p>
+                <a href="{% url 'market:admin_digicourses' %}" class="btn btn-outline-success btn-sm">
+                    <i class="fas fa-chalkboard-teacher me-1"></i>Manage Courses
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const listEl = document.getElementById('forecast-list');
+        const tsEl = document.getElementById('forecast-last-updated');
+        if (!listEl || !tsEl) return;
+
+        const endpoint = '{% url "market:admin_forecast_api" %}';
+
+        function renderForecasts(items) {
+            if (!items || !items.length) {
+                listEl.innerHTML = '<p class="mb-0 text-muted">No forecast items generated.</p>';
+                return;
+            }
+
+            const html = ['<ul class="list-group list-group-flush">'];
+            for (const item of items) {
+                const priority = item.priority || 'medium';
+                const badgeClass = priority === 'high' ? 'bg-danger' : 'bg-warning text-dark';
+                html.push(
+                    '<li class="list-group-item">' +
+                        '<div class="d-flex justify-content-between">' +
+                            '<div>' +
+                                '<strong>' + (item.product || '') + '</strong>' +
+                                '<p class="mb-1 small text-muted">SHG: ' + (item.shg || '-') + '</p>' +
+                                '<p class="mb-0">' + (item.message || '') + '</p>' +
+                            '</div>' +
+                            '<div class="text-end">' +
+                                '<span class="badge ' + badgeClass + '">' +
+                                    (priority.charAt(0).toUpperCase() + priority.slice(1)) + ' priority' +
+                                '</span>' +
+                            '</div>' +
+                        '</div>' +
+                    '</li>'
+                );
+            }
+            html.push('</ul>');
+            listEl.innerHTML = html.join('');
+        }
+
+        function updateTimestamp() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+            tsEl.textContent = 'Live · updated ' + timeStr;
+        }
+
+        function fetchForecasts() {
+            fetch(endpoint, {credentials: 'same-origin'})
+                .then(function(res) {
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    return res.json();
+                })
+                .then(function(data) {
+                    renderForecasts(data.forecasts || []);
+                    updateTimestamp();
+                })
+                .catch(function() {
+                    listEl.innerHTML = '<p class="mb-0 text-danger">Unable to load forecast right now.</p>';
+                    tsEl.textContent = 'Live · error';
+                });
+        }
+
+        fetchForecasts();
+        setInterval(fetchForecasts, 30000);
+    })();
+</script>
+{% endblock %}
