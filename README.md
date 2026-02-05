@@ -220,19 +220,11 @@ We welcome contributions from the community! Here's how you can help:
 ## 👥 Author
 
 <div align="center">
-  <svg width="150" height="150" viewBox="0 0 150 150">
-    <defs>
-      <clipPath id="circle">
-        <circle cx="75" cy="75" r="75" />
-      </clipPath>
-    </defs>
-    <image
-      width="150"
-      height="150"
-      href="https://raw.githubusercontent.com/antalaraj/antalaraj/main/profile.jpg"
-      clip-path="url(#circle)"
-    />
-  </svg>
+  <img
+    src="https://avatars.githubusercontent.com/antalaraj"
+    width="120"
+    alt="Raj Antala"
+  />
 
   <h3>Raj Antala</h3>
 
