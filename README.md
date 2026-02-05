@@ -219,12 +219,7 @@ We welcome contributions from the community! Here's how you can help:
 
 ## 👥 Author
 
-<div align="center">
-  <img
-    src="https://avatars.githubusercontent.com/antalaraj"
-    width="120"
-    alt="Raj Antala"
-  />
+<img src="https://avatars.githubusercontent.com/antalaraj?s=160" width="140" alt="Raj Antala" />
 
   <h3>Raj Antala</h3>
 
