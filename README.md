@@ -1,18 +1,5 @@
 # Grambazaar –  Marketplace with AI Branding, Demand Analysis & Learning Support 🛒
 
-<div align="center">
-  <img src="https://via.placeholder.com/1200x400/4CAF50/FFFFFF?text=GramBazaar+Marketplace" alt="GramBazaar Banner" style="border-radius: 10px; margin: 20px 0;">
-  
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
-  [![Django](https://img.shields.io/badge/Django-5.2-brightgreen.svg)](https://www.djangoproject.com/)
-  [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-  [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/yourusername/grambazaar/issues)
-
-  [![Deploy](https://img.shields.io/badge/Deploy-Heroku-430098.svg)](https://heroku.com/deploy)
-  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-</div>
-
 ## 📋 Table of Contents
 - [🌟 Features](#-features)
 - [🚀 Quick Start](#-quick-start)
@@ -233,17 +220,23 @@ We welcome contributions from the community! Here's how you can help:
 ## 👥 Author
 
 <div align="center">
-  <a href="https://github.com/rajantala">
-    <img src="https://via.placeholder.com/150" width="100px" style="border-radius: 50%;" alt="Raj Antala">
-    <br>
+  <a href="https://github.com/antalaraj">
+    <img 
+      src="https://via.placeholder.com/150" 
+      width="100" 
+      style="border-radius:50%;" 
+      alt="Raj Antala"
+    />
+    <br />
     <strong>Raj Antala</strong>
   </a>
+
   <p>
-    PGDM in AI and Data Science<br>
-    Adani Institute of Digital Technology Management<br>
-    <a href="mailto:antalaraj214@gmail.com">📧 Email</a> | 
-    <a href="https://linkedin.com/in/antalaraj">💼 LinkedIn</a> |
-    <a href="https://github.com/antalaraj">💻 GitHub</a>
+    PGDM in AI & Data Science<br />
+    Adani Institute of Digital Technology Management<br />
+    <a href="mailto:antalaraj214@gmail.com">📧 Email</a> |
+    <a href="https://www.linkedin.com/in/antalaraj" target="_blank">💼 LinkedIn</a> |
+    <a href="https://github.com/antalaraj" target="_blank">💻 GitHub</a>
   </p>
 </div>
 
@@ -259,5 +252,5 @@ We welcome contributions from the community! Here's how you can help:
   <h3>Made with ❤️ for rural empowerment</h3>
   <p>Support the project by giving it a ⭐ on GitHub!</p>
 </div>
-```
+
 
