@@ -1,126 +1,263 @@
-# Grambazaar –  Marketplace with AI Branding, Demand Analysis & Learning Support
+# Grambazaar –  Marketplace with AI Branding, Demand Analysis & Learning Support 🛒
 
-Grambazaar is a full-stack Django-based digital marketplace designed to empower rural Self Help Groups (SHGs) by enabling them to sell products online, build trust, learn digital skills, and gain demand insights using AI-driven and data-driven tools. This project was built as part of a social innovation hackathon and demonstrates how technology can bridge the gap between rural producers and digital consumers.
+<div align="center">
+  <img src="https://via.placeholder.com/1200x400/4CAF50/FFFFFF?text=GramBazaar+Marketplace" alt="GramBazaar Banner" style="border-radius: 10px; margin: 20px 0;">
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
+  [![Django](https://img.shields.io/badge/Django-5.2-brightgreen.svg)](https://www.djangoproject.com/)
+  [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+  [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/yourusername/grambazaar/issues)
+
+  [![Deploy](https://img.shields.io/badge/Deploy-Heroku-430098.svg)](https://heroku.com/deploy)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+</div>
+
+## 📋 Table of Contents
+- [🌟 Features](#-features)
+- [🚀 Quick Start](#-quick-start)
+- [⚙️ Tech Stack](#%EF%B8%8F-tech-stack)
+- [📂 Project Structure](#-project-structure)
+- [🛠️ Setup & Installation](#%EF%B8%8F-setup--installation)
+- [🤝 Contributing](#-contributing)
+- [👥 Author](#-team)
+
+## 🌟 Features
+
+### 🛍️ For Buyers
+- 🏷️ Browse and search products by categories
+- 👤 Create accounts and manage profiles
+- 🛒 Place and track orders
+- ⭐ Leave product reviews and ratings
+- 🔒 Secure checkout process
+
+### 👥 For SHGs (Self Help Groups)
+- 🏢 Create and manage SHG profiles
+- 📦 List and manage products with images
+- 📊 Track inventory and sales
+- 📚 Access digital learning resources (DigiCourses)
+- 💰 View financial transactions and wallet balance
+- 📈 Receive smart inventory and demand forecasts
+
+#### 🤖 AI-Powered Tools
+- **BrandSetu AI**: AI-powered product marketing and branding assistance
+- **DigiSarathi AI**: Intelligent digital assistant for business guidance
+- **Smart Recommendations**: Personalized product suggestions
+- **Automated Insights**: Data-driven business intelligence
+
+### 👨‍💼 For Administrators
+- 👥 Manage SHG registrations
+- ✅ Approve/reject products
+- 📦 Process and manage orders
+- 📊 Generate demand forecasts
+- 🎓 Manage digital learning content
+- 📱 Monitor platform analytics
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.10+
+- pip (Python package manager)
+- Virtual environment (recommended)
+
+### One-Command Setup
+```bash
+# Clone and setup (Linux/macOS)
+git clone https://github.com/yourusername/grambazaar.git && cd grambazaar && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt && python manage.py migrate && python manage.py createsuperuser
+```
+
+## ⚙️ Tech Stack
+
+### Backend
+- **Framework**: [Django 5.2](https://www.djangoproject.com/)
+- **Database**: SQLite (development), PostgreSQL (production)
+- **Authentication**: Django AllAuth
+- **API**: Django REST Framework
+
+### Frontend
+- HTML5, CSS3, JavaScript (ES6+)
+- [Bootstrap 5](https://getbootstrap.com/) - Responsive design
+- [jQuery](https://jquery.com/) - DOM manipulation
+- [Chart.js](https://www.chartjs.org/) - Data visualization
+
+### AI/ML Stack
+- **BrandSetu**: PyTorch, Transformers
+- **DigiSarathi**: NLP, RASA
+- **Forecasting**: scikit-learn, Prophet
+- **Recommendations**: Surprise, LightFM
+
+## 📂 Project Structure
+
+```plaintext
+GramBazaar/
+├── .github/               # GitHub workflows and configurations
+│   └── workflows/         # CI/CD pipelines
+│
+├── .vscode/               # VS Code workspace settings
+│   └── settings.json      # Editor configurations
+│
+├── GramBazaar/            # Main project configuration
+│   ├── __init__.py
+│   ├── settings/          # Split settings for different environments
+│   │   ├── base.py
+│   │   ├── development.py
+│   │   └── production.py
+│   ├── urls.py           # Main URL configuration
+│   ├── asgi.py           # ASGI config
+│   └── wsgi.py           # WSGI config
+│
+├── market/                # Main application
+│   ├── migrations/        # Database migrations
+│   ├── static/            # Static assets
+│   │   ├── css/          # Stylesheets
+│   │   ├── js/           # JavaScript files
+│   │   └── images/       # Static images
+│   │
+│   ├── templates/         # HTML templates
+│   │   └── market/       # Namespaced templates
+│   │       ├── base.html # Base template
+│   │       ├── includes/ # Reusable template parts
+│   │       ├── shg/      # SHG-specific templates
+│   │       └── admin/    # Admin templates
+│   │
+│   ├── management/        # Custom management commands
+│   │   └── commands/
+│   │
+│   ├── templatetags/     # Custom template tags
+│   │   └── __init__.py
+│   │
+│   ├── admin.py          # Admin site configuration
+│   ├── apps.py           # App config
+│   ├── forms.py          # Form definitions
+│   ├── models.py         # Database models
+│   ├── urls.py          # App URL routing
+│   ├── utils.py         # Utility functions
+│   └── views.py         # View functions
+│
+├── content/              # Content management app
+│   ├── migrations/
+│   ├── templates/
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   └── views.py
+│
+├── media/                # User-uploaded files (not in version control)
+│   ├── products/         # Product images
+│   └── profiles/         # Profile pictures
+│
+├── static/               # Global static files
+│   ├── css/             # Global styles
+│   ├── js/              # Global scripts
+│   └── vendor/          # Third-party libraries
+│
+├── tests/               # Test files
+│   ├── unit/            # Unit tests
+│   ├── integration/     # Integration tests
+│   └── fixtures/        # Test data
+│
+├── venv/                # Virtual environment (not in version control)
+│
+├── .env                 # Environment variables
+├── .gitignore           # Git ignore rules
+├── db.sqlite3           # Development database (not in version control)
+├── manage.py            # Django management script
+├── requirements.txt     # Python dependencies
+└── README.md           # Project documentation
+```
+
+## 🛠️ Setup & Installation
+
+### Development
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/grambazaar.git
+cd grambazaar
+
+# 2. Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: .\venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Set up environment variables
+cp .env.example .env
+# Edit .env with your configuration
+
+# 5. Run migrations
+python manage.py migrate
+
+# 6. Create superuser
+python manage.py createsuperuser
+
+# 7. Run development server
+python manage.py runserver
+```
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. 🍴 Fork the repository
+2. 🌿 Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
+5. 🔄 Open a Pull Request
+
+### Development Guidelines
+- Follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide
+- Write tests for new features
+- Update documentation
+- Keep commit messages clear and descriptive
+
+## 🐛 Troubleshooting
+
+### Common Issues
+1. **Database connection failed**
+   - Check your database settings in `.env`
+   - Ensure the database server is running
+
+2. **Missing dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Migration errors**
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+
+## 👥 Author
+
+<div align="center">
+  <a href="https://github.com/rajantala">
+    <img src="https://via.placeholder.com/150" width="100px" style="border-radius: 50%;" alt="Raj Antala">
+    <br>
+    <strong>Raj Antala</strong>
+  </a>
+  <p>
+    PGDM in AI and Data Science<br>
+    Adani Institute of Digital Technology Management<br>
+    <a href="mailto:antalaraj214@gmail.com">📧 Email</a> | 
+    <a href="https://linkedin.com/in/antalaraj">💼 LinkedIn</a> |
+    <a href="https://github.com/antalaraj">💻 GitHub</a>
+  </p>
+</div>
+
+## 🙏 Acknowledgments
+
+- Django Community for the amazing web framework
+- All open-source libraries and tools used in this project
+- Our mentors and advisors for their guidance
 
 ---
 
-## Overview
+<div align="center">
+  <h3>Made with ❤️ for rural empowerment</h3>
+  <p>Support the project by giving it a ⭐ on GitHub!</p>
+</div>
+```
 
-Grambazaar provides a public multi-vendor marketplace with live products, SHG registration, login and a dedicated dashboard, a custom admin dashboard separate from Django admin, DigiLearner micro-courses for digital upskilling, a smart rule-based demand forecasting system, a mock AI branding assistant called InstaBrand, a trust badge system (Bronze/Silver/Gold), and wallet & ledger tracking for SHGs.
-
----
-
-## Setup & Run
-
-Requirements: Python 3.10 or higher.
-
-Steps:
-- Create virtual environment: `python -m venv venv`
-- Activate: `venv\Scripts\activate`
-- Install: `pip install django==5.2`
-- Migrate DB: `python manage.py migrate`
-- Load demo data: `python seed_demo.py`
-- Run server: `python manage.py runserver`
-
-Application runs on: http://127.0.0.1:8000/
-
----
-
-## Demo Access
-
-SHG demo users:
-- shg1 / password123  
-- shg2 / password123  
-- shg3 / password123  
-- shg4 / password123  
-
-Any user without an SHG profile is treated as a platform admin.
-
----
-
-## Key URLs
-
-Public:
-- `/` – Home  
-- `/marketplace/` – Product listing  
-- `/product/<slug>/` – Product detail  
-- `/product/<slug>/order/` – Demo checkout  
-
-SHG:
-- `/signup/` – Register  
-- `/login/` – Login  
-- `/shg/dashboard/` – Dashboard  
-- `/shg/submit-product/` – Submit product  
-- `/shg/wallet/` – Wallet & ledger  
-
-Admin:
-- `/admin/dashboard/` – Platform metrics  
-- `/admin/pending-products/` – Approvals  
-- `/admin/orders/` – Order management  
-- `/admin/forecast/` – Demand insights  
-
----
-
-## InstaBrand (Mock AI)
-
-Endpoint: `/instabrand/`
-
-Simulates AI-based branding and returns:
-- Product title  
-- Description  
-- Hashtags  
-- Poster image URL  
-
----
-
-## Smart Demand Forecast
-
-Implemented in: `market/views.py::generate_forecast`
-
-Rule-based logic:
-- Low inventory → suggest increase production  
-- Food category → seasonal demand  
-
-Forecast results are visible in admin dashboard.
-
----
-
-## Project Structure
-
-Core components:
-- `market/` – Django app (models, views, forms)  
-- `market/templates/` – UI  
-- `market/static/` – CSS & JS  
-- `seed_demo.py` – Demo data generator  
-- `manage.py` – Django entry point  
-
----
-
-## Technology Stack
-
-- Backend: Django (Python)  
-- Frontend: HTML, CSS, JavaScript  
-- Database: SQLite  
-- AI Logic: Rule-based forecasting + mock NLP branding  
-- Architecture: MVC  
-
----
-
-## Future Scope
-
-- Payment gateway integration  
-- Logistics & delivery APIs  
-- Real ML-based forecasting models  
-- Mobile application  
-- Multilingual voice interface  
-- Government & NGO SHG integrations  
-
----
-
-## 👨‍💻 Author
-Raj Antala  
-🎓 PGDM Student in AI and Data Science  
-🏫 Adani Institute of Digital Technology Management (AIDTM)  
-📍 Gandhinagar, India  
-📧 antalaraj214@gmail.com  
-🔗 www.linkedin.com/in/antalaraj
