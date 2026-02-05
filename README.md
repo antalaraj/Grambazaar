@@ -220,23 +220,23 @@ We welcome contributions from the community! Here's how you can help:
 ## 👥 Author
 
 <div align="center">
-  <a href="https://github.com/antalaraj">
-    <img 
-      src="https://via.placeholder.com/150" 
-      width="100" 
-      style="border-radius:50%;" 
-      alt="Raj Antala"
-    />
-    <br />
-    <strong>Raj Antala</strong>
-  </a>
+  <img
+    src="https://avatars.githubusercontent.com/antalaraj"
+    width="120"
+    alt="Raj Antala"
+  />
+
+  <h3>Raj Antala</h3>
 
   <p>
-    PGDM in AI & Data Science<br />
-    Adani Institute of Digital Technology Management<br />
+    PGDM in AI & Data Science<br>
+    Adani Institute of Digital Technology Management
+  </p>
+
+  <p>
     <a href="mailto:antalaraj214@gmail.com">📧 Email</a> |
-    <a href="https://www.linkedin.com/in/antalaraj" target="_blank">💼 LinkedIn</a> |
-    <a href="https://github.com/antalaraj" target="_blank">💻 GitHub</a>
+    <a href="https://www.linkedin.com/in/antalaraj">💼 LinkedIn</a> |
+    <a href="https://github.com/antalaraj">💻 GitHub</a>
   </p>
 </div>
 
